@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>GAUSS LIGHTER - Max Vilarasau Serra</title>
+  <!-- Retro font VT323 for all -->
+  <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      background: #000;
+      color: #fff;
+      font-family: 'VT323', 'Fira Mono', 'Menlo', 'monospace';
+      overflow-x: hidden;
+    }
+    body {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+    }
+
+    /* Scanline effect */
+    body::after {
+      content: "";
+      pointer-events: none;
+      position: fixed;
+      top: 0; left: 0; width: 100vw; height: 100vh;
+      background: repeating-linear-gradient(
+        to bottom, rgba(255,255,255,0.06) 0px, rgba(255,255,255,0.06) 1px, transparent 1.5px, transparent 4px
+      );
+      z-index: 100;
+    }
+
+    /* Terminal boot animation */
+    #bootup {
+      position: fixed;
+      z-index: 9999;
+      inset: 0;
+      background: #000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.2rem;
+      font-family: inherit;
+      letter-spacing: 0.04em;
+      opacity: 1;
+      transition: opacity 0.9s cubic-bezier(.5,.1,.5,1);
+    }
+    #bootup.hide {
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 1.2s cubic-bezier(.52,.16,.41,.96);
+    }
+    .boot-line {
+      opacity: 0;
+      transition: opacity 0.28s cubic-bezier(.51,.14,.61,.99);
+      white-space: pre;
+    }
+    .boot-line.show {
+      opacity: 1;
+    }
+
+    .logo {
+      text-align: center;
+      font-size: 4rem;
+      letter-spacing: 0.18em;
+      font-weight: normal;
+      border-top: 2px solid #fffc00;
+      border-bottom: 2px solid #fe71c9;
+      display: inline-block;
+      padding: 0.2em 2.2em 0.18em 2.2em;
+      margin-top: 0.5em;
+      margin-bottom: 0.5em;
+      filter: drop-shadow(0 0 4px #fff6);
+      line-height: 1.1;
+      background: #111;
+      user-select: none;
+    }
+    .divider {
+      width: 40vw;
+      max-width: 400px;
+      border-top: 2px solid #00fff9;
+      opacity: 1;
+      margin: 2em
+    }
+
+    .logo .gauss {
+      color: #fe71c9;
+      letter-spacing: 0.11em;
+      display: block;
+      font-size: 1.0em;
+      font-weight: normal;
+      font-family: inherit;
+      /* Glitch effect */
+      position: relative;
+      text-shadow:
+        0 0 0px #fe71c9,
+        0 0 3px #fff;
+      animation: glitch 1.1s infinite linear alternate-reverse;
+    }
+    @keyframes glitch {
+      0% {
+        text-shadow:
+          1px 0 #fe71c9,
+          -1.5px 0 #00fff9,
+          1.5px 1px #fff,
+          0 0 3px #fe71c9,
+          0 0 8px #fff;
+        transform: none;
+      }
+      8% {
+        text-shadow:
+          -2px 0 #fe71c9,
+          2px 0 #fffc00,
+          0.5px 2px #fff,
+          0 0 2px #fffc00,
+          0 0 5px #fff;
+        transform: skewX(0deg) scaleY(1);
+      }
+      15% {
+        text-shadow:
+          3px 1px #fe71c9,
+          -3px -1px #00fff9,
+          0 2px #fff,
+          0 0 3px #fe71c9,
+          0 0 8px #fff;
+        transform: skewX(1deg) scaleY(1.02);
+      }
+      22% {
+        text-shadow:
+          2px 0 #fffc00,
+          -2px 0 #fe71c9,
+          1.5px 1.5px #fff,
+          0 0 4px #fe71c9,
+          0 0 8px #fff;
+        transform: skewX(-1deg) scaleY(0.99);
+      }
+      35% {
+        text-shadow:
+          1px 2px #fe71c9,
+          -2px -1px #fffc00,
+          0 3px #fff,
+          0 0 5px #fe71c9,
+          0 0 10px #fff;
+        transform: skewX(2deg) scaleY(1.01);
+      }
+      55% {
+        text-shadow:
+          2px 0 #fe71c9,
+          -2px 0 #fffc00,
+          1.5px 1.5px #fff,
+          0 0 4px #fe71c9,
+          0 0 8px #fff;
+        transform: skewX(-2deg) scaleY(1.03);
+      }
+      60% {
+        text-shadow:
+          -1.5px 0 #00fff9,
+          1px 0 #fe71c9,
+          -1px 2px #fff,
+          0 0 3px #fe71c9,
+          0 0 8px #fff;
+        transform: skewX(1deg) scaleY(1);
+      }
+      80% {
+        text-shadow:
+          1px 1.5px #fe71c9,
+          -1px -1.5px #fffc00,
+          0 3px #fff,
+          0 0 4px #fffc00,
+          0 0 7px #fff;
+        transform: skewX(0deg) scaleY(1);
+      }
+      100% {
+        text-shadow:
+          1px 0 #fe71c9,
+          -1.5px 0 #00fff9,
+          1.5px 1px #fff,
+          0 0 3px #fe71c9,
+          0 0 8px #fff;
+        transform: none;
+      }
+    }
+    .logo .lighter {
+      color: #fffc00;
+      font-size: 0.60em;
+      font-weight: normal;
+      letter-spacing: 0.26em;
+      margin-top: 0.0em;
+      text-shadow:
+        0 0 14px #fffc0088,
+        0 0 2px #fff,
+        0 0 2px #fffc00,
+        0 0 24px #fff,
+        0 0 18px #fffc00;
+      animation: electricFlicker 1.6s infinite alternate;
+      filter: drop-shadow(0 0 8px #fffc00);
+    }
+    @keyframes electricFlicker {
+      0%, 100% {
+        text-shadow:
+          0 0 14px #fffc00,
+          0 0 2px #fff,
+          0 0 2px #fffc00,
+          0 0 24px #fff,
+          0 0 18px #fffc00;
+        opacity: 1;
+        filter: drop-shadow(0 0 10px #fe71c9);
+      }
+      45% {
+        text-shadow:
+          0 0 22px #fffc00,
+          0 0 4px #fff,
+          0 0 32px #fffc00;
+        opacity: 0.91;
+        filter: drop-shadow(0 0 20px #fffc00);
+      }
+      60% {
+        text-shadow:
+          0 0 18px #fff,
+          0 0 7px #fe71c9;
+        opacity: 0.82;
+        filter: drop-shadow(0 0 16px #fe71c9);
+      }
+      80% {
+        text-shadow:
+          0 0 32px #fff,
+          0 0 14px #fffc00;
+        opacity: 1;
+        filter: drop-shadow(0 0 22px #fffc00);
+      }
+    }
+
+    .tagline {
+      margin-top: 1em;
+      margin-bottom: 2em;
+      font-size: 1rem;
+      letter-spacing: 0.1em;
+      opacity: 0.8;
+      text-align: center;
+    }
+
+    .bio {
+      font-size: 1.1rem;
+      margin: 0.6em auto 2.2em auto;
+      background: rgba(0,0,0,0.72);
+      border-left: 4px solid #fffc00;
+      padding: 0.5em 1em 0.5em 1.3em;
+      max-width: 440px;
+      opacity: 0.92;
+      letter-spacing: 0.02em;
+    }
+
+  
+    /* Papers/Selected Publications section */
+    .sp-section {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      gap: 1.5em;
+      margin: 2.5em 0 1.5em 0;
+    }
+    .sp-btn {
+      background: #111;
+      color: #fff;
+      border: 2px solid #fff;
+      border-radius: 1.3em;
+      padding: 1em 2.3em 1em 2.3em;
+      font-family: inherit;
+      font-size: 1.1rem;
+      font-weight: normal;
+      letter-spacing: 0.12em;
+      box-shadow: 0 2px 14px #000b, 0 0px 1px #fff6 inset;
+      margin: 0 0.3em;
+      text-align: left;
+      text-decoration: none;
+      transition: 
+        background 0.19s, 
+        color 0.19s,
+        box-shadow 0.17s,
+        transform 0.19s;
+      position: relative;
+      z-index: 1;
+      outline: none;
+    }
+    .sp-btn:before {
+      color: #fff;
+      font-size: 0.9em;
+      position: absolute;
+      left: 1em;
+      top: 50%;
+      transform: translateY(-50%);
+      opacity: 0.12;
+      pointer-events: none;
+    }
+    .sp-btn:hover,
+    .sp-btn:focus {
+      background: #fff;
+      color: #000;
+      outline: none;
+      box-shadow: 0 0 18px #fff, 0 2px 14px #000b;
+      transform: scale(1.04);
+      cursor: pointer;
+    }
+    @media (max-width: 600px) {
+      .sp-section {
+        flex-direction: column;
+        gap: 1em;
+      }
+      .sp-btn {
+        width: 90vw;
+        max-width: 320px;
+        padding-left: 2em;
+        padding-right: 2em;
+        font-size: 0.99rem;
+      }
+      .sp-btn:before {
+        left: 0.7em;
+      }
+    }
+
+    /* CV button */
+    .cv-section {
+      margin: 3em 0 2.6em 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .cv-btn {
+      background: #000;
+      color: #fff;
+      border: 2px solid #fff;
+      border-radius: 1.5em;
+      font-size: 1.22rem;
+      padding: 0.6em 2.4em;
+      letter-spacing: 0.12em;
+      font-family: inherit;
+      font-weight: normal;
+      transition: background 0.18s, color 0.18s;
+      box-shadow: 0 3px 16px #111b;
+      outline: none;
+      text-decoration: none;
+    }
+    .cv-btn:hover,
+    .cv-btn:focus {
+      background: #fff;
+      color: #000;
+      cursor: pointer;
+    }
+
+    @media (max-width: 600px) {
+      .logo { font-size: 2.1rem; }
+      .logo span { font-size: 1.18rem;}
+      .tagline { font-size: 1rem;}
+      .bio { font-size: 0.96rem;}
+      .cv-btn { font-size: 0.99rem;}
+    }
+  </style>
+</head>
+<body>
+  <!-- Terminal Boot Animation -->
+  <div id="bootup">
+    <div id="bootup-lines">
+      <div class="boot-line">&gt; booting... </div>
+      <div class="boot-line">&gt; loaded: GAUSS</div>
+      <div class="boot-line">&gt; loaded: LIGHTER</div>
+      <div class="boot-line">&gt; system ready :D</div>
+    </div>
+  </div>
+
+  <!-- Logo -->
+  <div class="logo">
+    <span class="gauss">GAUSS</span>
+    <span class="lighter">LIGHTER</span>
+  </div>
+
+  <!-- Hero Section -->
+  <div class="tagline">
+    <i>"For whoever has will be given more, and they will have an abundance.</i><br>
+    <i>Whoever does not have, even what they have will be taken from them."</i><br>
+    <br>
+    —Matthew 25:29
+  </div>
+
+  <div class="bio">
+    Hey there! My name is <b>Max Vilarasau Serra</b>, even though sometimes I go by <i><b>GaussLighter</b></i>... <br><br>
+    I'm a hardworking M. Sc. Graduate in Machine Learning & AI with an unconventional background in Classical Music, Statistics, Consulting, and Business.<br><br>
+    Jiu-Jitsu and Grappling Nerd, Roman Catholic, Wine Geek, Bullfighting Enthusiast, et Horlogerie Connoisseur. <br><br>
+    Native in English and Spanish; decent in French. <br><br>
+    Send me an email to: <u><i>max.vilarasau@gmail.com</i></u>
+  </div>
+
+  <!-- Socials -->
+  <div class="sp-section">
+    <a class="sp-btn" href="https://github.com/GaussLighter" target="_blank" title="GitHub">
+      <span class="ascii-icon">
+GitHub
+      </span>
+    </a>
+    <a class="sp-btn" href="https://linkedin.com/in/MaxVS" target="_blank" title="LinkedIn">
+      <span class="ascii-icon">
+LinkedIn
+      </span>
+    </a>
+    <a class="sp-btn" href="https://X.com/MaxVilarasau/" target="_blank" title="Twitter">
+      <span class="ascii-icon">
+Twitter
+      </span>
+    </a>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- Selected Publications -->
+  <div class="sp-section">
+    <a class="sp-btn" href="DR4DRL.pdf" download>Graduate Thesis:<br>Domain Randomization for DRL</a>
+    <a class="sp-btn" href="Explore.pdf" download>Q2 Paper:<br>Remote Viewing & the CIA</a>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- CV Download -->
+  <div class="cv-section">
+    <a class="sp-btn" href="MaxVilarasauCV.pdf" download>My CV <i>(last updated on July 9th)</i></a>
+  </div>
+
+  <!-- Progressive boot animation -->
+  <script>
+    // Progressive terminal effect: one line at a time
+    const lines = document.querySelectorAll('.boot-line');
+    let idx = 0;
+    const DELAYS = [1000, 250, 1000, 750]; // ms between lines
+    function showNextLine() {
+      if (idx < lines.length) {
+        lines[idx].classList.add('show');
+        setTimeout(showNextLine, DELAYS[idx]);
+        idx++;
+      } else {
+        setTimeout(() => {
+          document.getElementById('bootup').classList.add('hide');
+        }, 500); // Short pause before fade out
+        setTimeout(() => {
+          document.getElementById('bootup').style.display = 'none';
+        }, 500); // Wait for fade out to finish
+      }
+    }
+    showNextLine();
+  </script>
+</body>
+</html>
