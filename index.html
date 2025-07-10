@@ -242,7 +242,16 @@
       margin-bottom: 2em;
       font-size: 1rem;
       letter-spacing: 0.1em;
-      opacity: 0.8;
+      opacity: 0.67;
+      text-align: center;
+    }
+
+    .titles {
+      margin-top: 0em;
+      margin-bottom: 0em;
+      font-size: 2.5rem;
+      letter-spacing: 0.1em;
+      opacity: 0.67;
       text-align: center;
     }
 
@@ -253,7 +262,6 @@
       border-left: 4px solid #fffc00;
       padding: 0.5em 1em 0.5em 1.3em;
       max-width: 440px;
-      opacity: 0.92;
       letter-spacing: 0.02em;
     }
 
@@ -361,6 +369,38 @@
       .bio { font-size: 0.96rem;}
       .cv-btn { font-size: 0.99rem;}
     }
+
+    .corner-text {
+  position: fixed;
+  bottom: 20px;
+  right: 40px;
+  background: none;
+  font-family: inherit;
+  font-size: 1rem;
+  z-index: 2000;
+  pointer-events: none; /* Can set to 'none' if you want it to ignore mouse */
+  user-select: none;
+  text-align: right;
+}
+@media (max-width: 600px) {
+  .corner-text {
+    font-size: 0.95rem;
+    right: 8px;
+    bottom: 10px;
+  }
+}
+
+.ct-pink {
+  color: #fe71c9;
+}
+.ct-yellow {
+  color: #fffc00;
+}
+.ct-blue {
+  color: #00fff9;
+}
+
+
   </style>
 </head>
 <body>
@@ -370,7 +410,7 @@
       <div class="boot-line">&gt; booting... </div>
       <div class="boot-line">&gt; loaded: GAUSS</div>
       <div class="boot-line">&gt; loaded: LIGHTER</div>
-      <div class="boot-line">&gt; system ready :D</div>
+      <div class="boot-line">&gt; taking off :D</div>
     </div>
   </div>
 
@@ -389,14 +429,22 @@
   </div>
 
   <div class="bio">
-    Hey there! My name is <b>Max Vilarasau Serra</b>, even though sometimes I go by <i><b>GaussLighter</b></i>... <br><br>
-    I'm a hardworking M. Sc. Graduate in Machine Learning & AI with an unconventional background in Classical Music, Statistics, Consulting, and Business.<br><br>
-    Jiu-Jitsu and Grappling Nerd, Roman Catholic, Wine Geek, Bullfighting Enthusiast, et Horlogerie Connoisseur. <br><br>
-    Native in English and Spanish; decent in French. <br><br>
-    Send me an email to: <u><i>max.vilarasau@gmail.com</i></u>
+Hey there! I’m <b>Max Vilarasau Serra</b>, though in digital circles, you might know me as <i><b>Gauss Lighter</b></i>...<br><br>
+I’m a hardworking M. Sc. graduate in Machine Learning & AI with an unconventional mix of backgrounds in Classical Music, Statistics, Strategy Consulting, and Business Management.<br><br>
+Jiu-Jitsu and Grappling Nerd, Roman Catholic, Wine Geek, Bullfighting Enthusiast, et Horlogerie Connoisseur. <br><br>
+Fluent in English and Spanish; decent in French.<br><br>
+Feel free to reach out: <u><i>max.vilarasau@gmail.com</i></u>
   </div>
 
+
+    <div class="divider"></div>
+
+
   <!-- Socials -->
+
+    <div class="titles">
+    Socials
+  </div>
   <div class="sp-section">
     <a class="sp-btn" href="https://github.com/GaussLighter" target="_blank" title="GitHub">
       <span class="ascii-icon">
@@ -417,6 +465,10 @@ Twitter
 
   <div class="divider"></div>
 
+
+    <div class="titles">
+    Stuff that I yap about...
+  </div>
   <!-- Selected Publications -->
   <div class="sp-section">
     <a class="sp-btn" href="DR4DRL.pdf" download>Graduate Thesis:<br>Domain Randomization for DRL</a>
@@ -425,10 +477,22 @@ Twitter
 
   <div class="divider"></div>
 
+
+      <div class="titles">
+    My Resume
+  </div>
+
   <!-- CV Download -->
   <div class="cv-section">
-    <a class="sp-btn" href="MaxVilarasauCV.pdf" download>My CV <i>(last updated on July 9th)</i></a>
+    <a class="sp-btn" href="MaxVilarasauCV.pdf" download><i>last updated on <b>July 9th 2025</b></i></a>
   </div>
+
+<div class="corner-text">
+  <span class="ct-pink">Max</span><br>
+  <span class="ct-yellow">Vilarasau</span><br>
+  <span class="ct-blue">Serra</span>
+</div>
+
 
   <!-- Progressive boot animation -->
   <script>
