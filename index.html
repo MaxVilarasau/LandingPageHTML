@@ -90,7 +90,7 @@
       margin: 2em
     }
 
-    .logo .gauss {
+    .logo .mvs {
       color: #fe71c9;
       letter-spacing: 0.11em;
       display: block;
@@ -187,53 +187,53 @@
         transform: none;
       }
     }
-    .logo .lighter {
+    .logo .gausslighter {
       color: #fffc00;
       font-size: 0.60em;
       font-weight: normal;
       letter-spacing: 0.26em;
       margin-top: 0.0em;
       text-shadow:
-        0 0 14px #fffc0088,
-        0 0 2px #fff,
-        0 0 2px #fffc00,
-        0 0 24px #fff,
-        0 0 18px #fffc00;
+        0 0 14px #00fff9,
+        0 0 2px #fe71c9,
+        0 0 2px #00fff9,
+        0 0 24px #00fff9,
+        0 0 18px #fe71c9;
       animation: electricFlicker 1.6s infinite alternate;
-      filter: drop-shadow(0 0 8px #fffc00);
+      filter: drop-shadow(0 0 8px #00fff9);
     }
     @keyframes electricFlicker {
       0%, 100% {
         text-shadow:
-          0 0 14px #fffc00,
-          0 0 2px #fff,
-          0 0 2px #fffc00,
-          0 0 24px #fff,
-          0 0 18px #fffc00;
+          0 0 14px #fe71c9,
+          0 0 2px #00fff9,
+          0 0 2px #fe71c9,
+          0 0 24px #00fff9,
+          0 0 18px #fe71c9;
         opacity: 1;
         filter: drop-shadow(0 0 10px #fe71c9);
       }
       45% {
         text-shadow:
-          0 0 22px #fffc00,
-          0 0 4px #fff,
-          0 0 32px #fffc00;
+          0 0 22px #fe71c9,
+          0 0 4px #00fff9,
+          0 0 32px #00fff9;
         opacity: 0.91;
-        filter: drop-shadow(0 0 20px #fffc00);
+        filter: drop-shadow(0 0 20px #00fff9);
       }
       60% {
         text-shadow:
-          0 0 18px #fff,
+          0 0 18px #00fff9,
           0 0 7px #fe71c9;
         opacity: 0.82;
         filter: drop-shadow(0 0 16px #fe71c9);
       }
       80% {
         text-shadow:
-          0 0 32px #fff,
-          0 0 14px #fffc00;
+          0 0 32px #00fff9,
+          0 0 14px #fe71c9;
         opacity: 1;
-        filter: drop-shadow(0 0 22px #fffc00);
+        filter: drop-shadow(0 0 22px #fe71c9);
       }
     }
 
@@ -370,37 +370,6 @@
       .cv-btn { font-size: 0.99rem;}
     }
 
-    .corner-text {
-  position: fixed;
-  top: 33px;
-  right: 100px;
-  background: none;
-  font-family: inherit;
-  font-size: 1rem;
-  z-index: 2000;
-  pointer-events: none; /* Can set to 'none' if you want it to ignore mouse */
-  user-select: none;
-  text-align: right;
-}
-@media (max-width: 600px) {
-  .corner-text {
-    font-size: 0.95rem;
-    right: 8px;
-    bottom: 10px;
-  }
-}
-
-.ct-pink {
-  color: #fe71c9;
-}
-.ct-yellow {
-  color: #fffc00;
-}
-.ct-blue {
-  color: #00fff9;
-}
-
-
   </style>
 </head>
 <body>
@@ -416,8 +385,8 @@
 
   <!-- Logo -->
   <div class="logo">
-    <span class="gauss">GAUSS</span>
-    <span class="lighter">LIGHTER</span>
+    <span class="mvs">MAX VILARASAU SERRA</span>
+    <span class="gausslighter">GAUSS LIGHTER</span>
   </div>
 
   <!-- Hero Section -->
@@ -467,7 +436,7 @@ Twitter
 
 
     <div class="titles">
-    Stuff that I yap about...
+    Geeky stuff that I yap about after a drink or two...
   </div>
   <!-- Selected Publications -->
   <div class="sp-section">
@@ -486,12 +455,6 @@ Twitter
   <div class="cv-section">
     <a class="sp-btn" href="MaxVilarasauCV.pdf" download><i>last updated on <b>July 9th 2025</b></i></a>
   </div>
-
-<div class="corner-text">
-  <span class="ct-pink">Max</span><br>
-  <span class="ct-yellow">Vilarasau</span><br>
-  <span class="ct-blue">Serra</span>
-</div>
 
 
   <!-- Progressive boot animation -->
