@@ -69,19 +69,21 @@
     .logo {
       text-align: center;
       font-size: 4rem;
-      letter-spacing: 0.18em;
+      letter-spacing: 0.2em;
       font-weight: normal;
       border-top: 2px solid #fffc00;
       border-bottom: 2px solid #fe71c9;
       display: inline-block;
-      padding: 0.2em 2.2em 0.18em 2.2em;
+      padding: 0.25em 0.75em 0.25em 0.75em;
       margin-top: 0.5em;
       margin-bottom: 0.5em;
-      filter: drop-shadow(0 0 4px #fff6);
+      filter: drop-shadow(0 0 10px #00fff9);
       line-height: 1.1;
       background: #111;
       user-select: none;
+      cursor: pointer;  
     }
+
     .divider {
       width: 40vw;
       max-width: 400px;
@@ -304,15 +306,15 @@
       left: 1em;
       top: 50%;
       transform: translateY(-50%);
-      opacity: 0.12;
+      opacity: 1;
       pointer-events: none;
     }
     .sp-btn:hover,
     .sp-btn:focus {
-      background: #fff;
+      background: rgba(255, 255, 255, 0.9);
       color: #000;
       outline: none;
-      box-shadow: 0 0 18px #fff, 0 2px 14px #000b;
+      box-shadow: 0 0 18px #00fff9, 0 2px 14px #000;
       transform: scale(1.04);
       cursor: pointer;
     }
@@ -385,21 +387,21 @@
 
   <!-- Logo -->
   <div class="logo">
-    <span class="mvs">MAX VILARASAU SERRA</span>
-    <span class="gausslighter">GAUSS LIGHTER</span>
+    <span class="mvs">Max Vilarasau Serra</span>
+    <span class="gausslighter"><i>“the Gauss Lighter”</i></span>
   </div>
 
   <!-- Hero Section -->
   <div class="tagline">
-    <i>"For whoever has will be given more, and they will have an abundance.</i><br>
-    <i>Whoever does not have, even what they have will be taken from them."</i><br>
+    <i>“For whoever has will be given more, and they will have an abundance.</i><br>
+    <i>Whoever does not have, even what they have will be taken from them.”</i><br>
     <br>
     —Matthew 25:29
   </div>
 
   <div class="bio">
-Hey there! I’m <b>Max Vilarasau Serra</b>, though in digital circles, you might know me as <i><b>Gauss Lighter</b></i>...<br><br>
-I’m a hardworking M. Sc. graduate in Machine Learning & AI with an unconventional mix of backgrounds in Classical Music, Statistics, Strategy Consulting, and Business Management.<br><br>
+Hey there! I’m <b>Max Vilarasau Serra</b>, although you might also know me as <i><b>Gauss Lighter</b></i>...<br><br>
+I’m a hardworking M. Sc. graduate in Machine Learning & AI with an unconventional mix of backgrounds in Classical Music, Statistics, Strategy Consulting, and Business.<br><br>
 Jiu-Jitsu and Grappling Nerd, Roman Catholic, Wine Geek, Bullfighting Enthusiast, et Horlogerie Connoisseur. <br><br>
 Fluent in English and Spanish; decent in French.<br><br>
 Feel free to reach out: <u><i>max.vilarasau@gmail.com</i></u>
@@ -456,6 +458,12 @@ Twitter
     <a class="sp-btn" href="MaxVilarasauCV.pdf" download><i>last updated on <b>July 9th 2025</b></i></a>
   </div>
 
+  <div class="divider"></div>
+
+    <div class="tagline">
+<i>“No one engages in evil unless they hate themselves.”</i><br><br>
+—Carlos Pérez Laporta, Ph. D.
+  </div>
 
   <!-- Progressive boot animation -->
   <script>
@@ -478,6 +486,16 @@ Twitter
       }
     }
     showNextLine();
+
+      document.querySelector('.logo').addEventListener('click', function() {
+    location.reload();
+  });
+
+    document.querySelectorAll('a').forEach(function(link) {
+    link.setAttribute('target', '_blank');
+    link.setAttribute('rel', 'noopener noreferrer');
+  });
+
   </script>
 </body>
 </html>
