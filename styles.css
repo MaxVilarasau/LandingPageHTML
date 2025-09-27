@@ -343,9 +343,6 @@ body{
   margin-top: 0px;
 }
 
-/* IMPORTANT: delete this if you added it before */
-.quote-author { margin-top: -20px; } /* <- remove this line */
-
 .hero-grid {
   grid-template-columns: 1fr;   /* single column */
 }
@@ -368,4 +365,14 @@ body{
   position: fixed; top: 0; z-index: 1000;
   background: #F7F7F5AB; /* same as rgba(247,247,245,0.67) */
   border-bottom: 1px solid var(--line);
+}
+
+.site-footer {
+  padding: 22px 0 22px;   /* <-- top = 22px, bottom = 40px */
+  border-top: 1px solid var(--line);
+  margin-top: 20px;       /* <-- space between footer and content above */
+}
+
+.hero-text h1 {
+  text-align: center;
 }
