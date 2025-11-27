@@ -377,6 +377,7 @@ body{
   text-align: center;
 }
 
+/* Make CV section single column - remove grid behavior */
 #cv .grid-2 {
-  grid-template-columns: 1fr;
+  display: block;
 }
